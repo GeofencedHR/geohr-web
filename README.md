@@ -1,2 +1,2 @@
 # geohr-web
-Web application GeoHR platform
+Web application for GeoHR platform
