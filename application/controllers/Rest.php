@@ -4,7 +4,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Rest extends CI_Controller 
 {
 
-	public function report_location(){
+	public function report_location()
+	{
 		$this->input->raw_input_stream;
         $input_data = json_decode($this->input->raw_input_stream, true);
 
