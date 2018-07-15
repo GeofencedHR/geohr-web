@@ -9,9 +9,27 @@ class Dashboard extends CI_Controller
 		$this->load->view('dash_board_subscribers');
 	}
 
-	public function reports()
+	public function subscriber_view()
 	{
 		$this->load->helper('url');
-		$this->load->view('dash_board_reports');
+		$this->load->view('dash_board_subscribers_view');
+	}
+
+	public function admin_reports()
+	{
+		$this->load->helper('url');
+		$this->load->view('dash_board_admin_reports');
+	}
+
+	public function employees()
+	{
+		$this->load->helper('url');
+		$this->load->view('dash_board_employees');
+	}
+
+	public function work_places()
+	{
+		$this->load->helper('url');
+		$this->load->view('dash_board_workplaces');
 	}
 }

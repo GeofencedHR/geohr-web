@@ -52,14 +52,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 //$route['path/path'] = 'controller/method'
 
-$route['login'] = 'login';
-$route['login/forgot_password'] = 'login/forgot_password';
-
 $route['rest'] = 'rest';
 $route['rest/report_location'] = 'rest/report_location';
 
 $route['default_controller'] = 'dashboard';
-$route['dashboard/reports'] = 'dashboard/reports';
+$route['dashboard/subscriber/view'] = 'dashboard/subscriber_view';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
