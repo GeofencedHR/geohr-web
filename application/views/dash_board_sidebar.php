@@ -28,7 +28,9 @@ function high_light_tab($currentPath, $context) {
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link <?php high_light_tab("employees", $this); ?>" 
+                <a class="nav-link 
+                      <?php high_light_tab("employees", $this); ?> 
+                      <?php high_light_tab("employee", $this); ?>" 
                   href="<?php echo base_url('/index.php/dashboard/employees');?>">
                   <span data-feather="users"></span>
                   Employees

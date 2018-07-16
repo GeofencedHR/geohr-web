@@ -105,7 +105,7 @@ require_once("dash_board_subscribers_search.php");
         <div class="col-md-4 order-md-2 mb-4">
 
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Statistics</span>
+            <span class="text-muted">Summary</span>
           </h4>
 
           <ul class="list-group mb-3">
