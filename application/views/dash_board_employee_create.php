@@ -4,6 +4,8 @@ require_once("dash_board_header.php");
 require_once("dash_board_employee_search.php");
 ?>
 
+<hr/>
+
   <div class="row">
      <div class="col-md-8 order-md-1">
           <form class="needs-validation" novalidate>

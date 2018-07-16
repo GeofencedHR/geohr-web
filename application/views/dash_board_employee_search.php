@@ -16,7 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     			        <option>Suspended</option>
     			    </select>
     			  </div>
-    			  <button type="submit" class="btn btn-primary mb-2">Search</button>
+    			  <button type="submit" class="btn btn-primary mb-2">
+              <span data-feather="search"></span> Search</button>
     			</form>
           <a href="<?php echo base_url('/index.php/dashboard/employee/create');?>">
             <button class="btn btn-success mb-2">

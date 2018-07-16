@@ -4,6 +4,8 @@ require_once("dash_board_header.php");
 require_once("dash_board_subscribers_search.php");
 ?>
 
+<hr/>
+
   <div class="row">
      <div class="col-md-8 order-md-1">
           <form class="needs-validation" novalidate>
@@ -105,7 +107,9 @@ require_once("dash_board_subscribers_search.php");
         <div class="col-md-4 order-md-2 mb-4">
 
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Summary</span>
+            <span class="text-muted">
+              <span data-feather="file-text"></span> Summary
+            </span>
           </h4>
 
           <ul class="list-group mb-3">
