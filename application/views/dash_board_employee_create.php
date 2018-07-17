@@ -8,6 +8,13 @@ require_once("dash_board_employee_search.php");
 
   <div class="row">
      <div class="col-md-8 order-md-1">
+
+        <h5 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">
+              <span data-feather="user"></span> Create employee
+            </span>
+          </h5>
+
           <form class="needs-validation" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3">

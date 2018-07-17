@@ -14,7 +14,9 @@ require_once("dash_board_header.php");
                     <option>2016</option>
                 </select>
               </div>
-              <button type="submit" class="btn btn-primary mb-2">Show</button>
+              <button type="submit" class="btn btn-primary mb-2">
+                <span data-feather="filter"></span> Show
+              </button>
             </form>
 
           </div>

@@ -39,6 +39,12 @@ class Dashboard extends CI_Controller
 		$this->load->view('dash_board_employee_create');
 	}
 
+	public function employee_report_view()
+	{
+		$this->load->helper('url');
+		$this->load->view('dash_board_employee_report_view');
+	}
+
 	public function work_places()
 	{
 		$this->load->helper('url');

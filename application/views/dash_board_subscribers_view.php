@@ -8,6 +8,13 @@ require_once("dash_board_subscribers_search.php");
 
   <div class="row">
      <div class="col-md-8 order-md-1">
+
+        <h5 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-muted">
+              <span data-feather="user"></span> Profile
+            </span>
+          </h5>
+
           <form class="needs-validation" novalidate>
             <div class="row">
               <div class="col-md-6 mb-3">
@@ -106,11 +113,11 @@ require_once("dash_board_subscribers_search.php");
 
         <div class="col-md-4 order-md-2 mb-4">
 
-          <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">
               <span data-feather="file-text"></span> Summary
             </span>
-          </h4>
+          </h5>
 
           <ul class="list-group mb-3">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
