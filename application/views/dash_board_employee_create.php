@@ -28,10 +28,15 @@ require_once("dash_board_employee_search.php");
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="username">Email address</label>
-              <div class="input-group">
-                <input type="email" class="form-control" id="username" placeholder="Email address">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="epId">Employee ID</label>
+                <input type="text" class="form-control" id="epId" placeholder="Employee ID">
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Email address">
               </div>
             </div>
 
