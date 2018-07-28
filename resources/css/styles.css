@@ -1,25 +1,29 @@
 .copyright {
-	font-size: 12px;
-	margin-top: 20px;
+    font-size: 12px;
+    margin-top: 20px;
 }
 
 body {
-	background-color: #f8f8f8;
+    background-color: #f8f8f8;
 }
 
 .logo {
     margin-top: 30px;
     margin-bottom: 5px;
- }
+}
 
- .action-links {
+.action-links {
     margin-top: 10px;
- }
+}
 
- .padding-top5 {
- 	padding-top: 5px;
- }
+.padding-top5 {
+    padding-top: 5px;
+}
 
-  .padding-bottom5 {
- 	padding-bottom: 5px;
- }
+.padding-bottom5 {
+    padding-bottom: 5px;
+}
+
+.form-error-alert p {
+    margin: 0 !important;
+}

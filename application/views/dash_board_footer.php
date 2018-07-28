@@ -2,12 +2,12 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-    </main>
-  </div>
+</main>
+</div>
 </div>
 
 <?php require_once("footer.php"); ?>
 
-    <script>
-      feather.replace()
-    </script>
+<script>
+    feather.replace()
+</script>
