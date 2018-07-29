@@ -9,8 +9,18 @@ class Login extends CI_Controller
 
     public function index()
     {
-        $this->load->helper('url');
-        $this->load->view('login_page');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
+
+        $this->form_validation->set_rules('email', 'Email address', 'required');
+        $this->form_validation->set_rules('password', 'Password', 'required');
+        $this->form_validation->set_error_delimiters('<div class="form-error-alert">', '</div>');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('login_page');
+        } else {
+            $this->load->view('login_page');
+        }
     }
 
     public function forgot_password()
@@ -31,6 +41,7 @@ class Login extends CI_Controller
         $this->form_validation->set_rules('company', 'Company name', 'required|max_length[100]');
         $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]|max_length[20]');
         $this->form_validation->set_rules('repassword', 'Password confirmation', 'required|min_length[5]|max_length[20]|matches[password]');
+        $this->form_validation->set_error_delimiters('<div class="form-error-alert">', '</div>');
 
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('register');

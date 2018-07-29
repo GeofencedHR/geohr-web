@@ -10,18 +10,20 @@ require_once("header.php");
                 <img src="<?php echo base_url('resources/images/logo-transparent.png'); ?>"
                      alt="Generic placeholder image">
             </div>
-            <form>
-                <h4 class="text-center padding-top5 padding-bottom5">Login</h4>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                           placeholder="Enter email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+            <?php echo form_open('/login'); ?>
+            <h4 class="text-center padding-top5 padding-bottom5">Login</h4>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
+                       placeholder="Enter email">
+                <?php echo form_error('email'); ?>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                <?php echo form_error('password'); ?>
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <div class="text-center action-links">
                 <a href="<?php echo base_url('/index.php/login/forgot_password'); ?>">Forgot password?</a> or
