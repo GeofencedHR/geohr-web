@@ -2,6 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once("dash_board_header.php");
 require_once("dash_board_subscribers_search.php");
+
+echo $email;
+echo $user_level
 ?>
 
 

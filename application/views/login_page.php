@@ -15,7 +15,7 @@ require_once("header.php");
             <div class="form-group">
                 <label for="email">Email address</label>
                 <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp"
-                       placeholder="Enter email">
+                       placeholder="Enter email" value="<?php echo set_value('email'); ?>">
                 <?php echo form_error('email'); ?>
             </div>
             <div class="form-group">

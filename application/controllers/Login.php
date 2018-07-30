@@ -11,6 +11,8 @@ class Login extends CI_Controller
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
+        $this->load->library('session');
+        $this->load->model('Login_model');
 
         $this->form_validation->set_rules('email', 'Email address', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -19,8 +21,28 @@ class Login extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('login_page');
         } else {
-            $this->load->view('login_page');
+            $existing_user = $this->Login_model->validate_user_credentials($_POST['email'], md5($_POST['password']));
+            if ($existing_user->num_rows() > 0) {
+                $userData = array(
+                    'email' => $existing_user->row()->user_email,
+                    'user_level' => $existing_user->row()->user_level
+                );
+                $this->session->set_userdata($userData);
+                redirect('/dashboard/employees');
+            } else {
+                $this->load->view('login_page');
+            }
         }
+    }
+
+    public function logout()
+    {
+        $this->load->helper('url');
+        $this->load->library('session');
+
+        $sessionKeys = array('email', 'user_level');
+        $this->session->unset_userdata($sessionKeys);
+        redirect('/login');
     }
 
     public function forgot_password()
@@ -61,7 +83,7 @@ class Login extends CI_Controller
     public function email_check($email)
     {
         $this->load->model('Login_model');
-        $existing_user = $this->Login_model->find_subscriber_by_email($email);
+        $existing_user = $this->Login_model->find_user_by_email($email);
         if ($existing_user->num_rows() == 0) {
             return true;
         } else {

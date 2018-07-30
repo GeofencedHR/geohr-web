@@ -6,7 +6,17 @@ class Dashboard extends CI_Controller
     public function index()
     {
         $this->load->helper('url');
-        $this->load->view('dash_board_subscribers');
+        $this->load->library('session');
+
+        if ($this->session->has_userdata('email') &&
+            $this->session->has_userdata('user_level')) {
+
+            $data['email'] = $this->session->userdata('email');
+            $data['user_level'] = $this->session->userdata('user_level');
+            $this->load->view('dash_board_subscribers', $data);
+        } else {
+            redirect('/login');
+        }
     }
 
     public function subscriber_view()
