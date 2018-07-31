@@ -29,7 +29,13 @@ class Login extends CI_Controller
                     'user_level' => $existing_user->row()->user_level
                 );
                 $this->session->set_userdata($userData);
-                redirect('/dashboard/employees');
+                if ($existing_user->row()->user_level == 2) {
+                    redirect('/dashboard/employees');
+                }
+
+                if ($existing_user->row()->user_level == 1) {
+                    redirect('/dashboard');
+                }
             } else {
                 $this->load->view('login_page');
             }
