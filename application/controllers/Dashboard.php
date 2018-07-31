@@ -113,6 +113,7 @@ class Dashboard extends CI_Controller
     {
         $data['email'] = $this->session->userdata('email');
         $data['user_level'] = $this->session->userdata('user_level');
+        $data['name'] = $this->session->userdata('name');
         return $data;
     }
 

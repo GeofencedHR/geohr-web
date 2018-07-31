@@ -5,11 +5,10 @@ require_once("header.php");
 
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">GeoHR dashboard</a>
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="<?php echo base_url('/index.php/login/logout'); ?>">Sign out</a>
-        </li>
-    </ul>
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="p-2 text-light" href="#">Hello <?php echo $name ?>,</a>
+        <a class="p-2 text-light" href="<?php echo base_url('/index.php/login/logout'); ?>">Sign out</a>
+    </nav>
 </nav>
 
 <div class="container-fluid">
