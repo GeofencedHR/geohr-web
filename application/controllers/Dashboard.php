@@ -7,9 +7,11 @@ class Dashboard extends CI_Controller
     {
         $this->load->helper('url');
         $this->load->library('session');
+        $this->load->model('Dashboard_model');
 
         if ($this->isLoggedIn() && $this->isAdmin()) {
-            $this->load->view('dash_board_subscribers', $this->getLoginData());
+            $subscribers = $this->Dashboard_model->getSubscribers();
+            $this->load->view('dash_board_subscribers', $this->getPageData($subscribers));
         } else {
             redirect('/login');
         }
@@ -21,7 +23,7 @@ class Dashboard extends CI_Controller
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isAdmin()) {
-            $this->load->view('dash_board_subscribers_view', $this->getLoginData());
+            $this->load->view('dash_board_subscribers_view', $this->getPageData(null));
         } else {
             redirect('/login');
         }
@@ -33,7 +35,7 @@ class Dashboard extends CI_Controller
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isAdmin()) {
-            $this->load->view('dash_board_admin_reports', $this->getLoginData());
+            $this->load->view('dash_board_admin_reports', $this->getPageData(null));
         } else {
             redirect('/login');
         }
@@ -45,7 +47,7 @@ class Dashboard extends CI_Controller
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isSubscriber()) {
-            $this->load->view('dash_board_employees', $this->getLoginData());
+            $this->load->view('dash_board_employees', $this->getPageData(null));
         } else {
             redirect('/login');
         }
@@ -57,7 +59,7 @@ class Dashboard extends CI_Controller
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isSubscriber()) {
-            $this->load->view('dash_board_employee_view', $this->getLoginData());
+            $this->load->view('dash_board_employee_view', $this->getPageData(null));
         } else {
             redirect('/login');
         }
@@ -69,7 +71,7 @@ class Dashboard extends CI_Controller
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isSubscriber()) {
-            $this->load->view('dash_board_employee_create', $this->getLoginData());
+            $this->load->view('dash_board_employee_create', $this->getPageData(null));
         } else {
             redirect('/login');
         }
@@ -81,7 +83,7 @@ class Dashboard extends CI_Controller
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isSubscriber()) {
-            $this->load->view('dash_board_employee_report_view', $this->getLoginData());
+            $this->load->view('dash_board_employee_report_view', $this->getPageData(null));
         } else {
             redirect('/login');
         }
@@ -93,7 +95,7 @@ class Dashboard extends CI_Controller
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isSubscriber()) {
-            $this->load->view('dash_board_workplaces', $this->getLoginData());
+            $this->load->view('dash_board_workplaces', $this->getPageData(null));
         } else {
             redirect('/login');
         }
@@ -109,11 +111,13 @@ class Dashboard extends CI_Controller
         return false;
     }
 
-    private function getLoginData()
+    private function getPageData($pageData)
     {
         $data['email'] = $this->session->userdata('email');
         $data['user_level'] = $this->session->userdata('user_level');
         $data['name'] = $this->session->userdata('name');
+        $data['user_id'] = $this->session->userdata('user_id');
+        $data['pageData'] = $pageData;
         return $data;
     }
 

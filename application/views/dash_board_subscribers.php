@@ -4,7 +4,6 @@ require_once("dash_board_header.php");
 require_once("dash_board_subscribers_search.php");
 ?>
 
-
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -19,35 +18,49 @@ require_once("dash_board_subscribers_search.php");
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Jack</td>
-                <td>jack@gmail.com</td>
-                <td>FREE</td>
-                <td>10:30 PM on 20/10/2018</td>
+            <?php
+
+            $i = 1;
+            foreach ($pageData->result() as $row) {
+                echo "
+                <tr>
+                <td>" . $i++ . "</td>
+                <td>" . $row->user_first_name . "</td>
+                <td>" . $row->user_email . "</td>
+                <td>" . $row->plan . "</td>
+                <td>" . $row->user_created . "</td>
                 <td>
-                    <span class="badge badge-warning">New</span>
+                    <span class=\"badge " . getStatusLabel($row->status) . "\">" . $row->status . "</span>
                 </td>
                 <td>
-                    <a href="<?php echo base_url('/index.php/dashboard/subscriber/view'); ?>" class="badge badge-info">View</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Saman</td>
-                <td>saman@gmail.com</td>
-                <td>FREE</td>
-                <td>8:30 PM on 21/11/2018</td>
-                <td>
-                    <span class="badge badge-success">Active</span>
-                </td>
-                <td>
-                    <a href="<?php echo base_url('/index.php/dashboard/subscriber/view'); ?>" class="badge badge-info">View</a>
+                    <a href=";
+                ?>
+
+                <?php echo base_url('/index.php/dashboard/subscriber/view?id=' . $row->user_id); ?>
+
+                <?php
+                echo "\" class=\"badge badge-info\">View</a>
                 </td>
             </tr>
+                ";
+            }
+            ?>
             </tbody>
         </table>
     </div>
 
 <?php
 require_once("dash_board_footer.php");
+
+function getStatusLabel($status)
+{
+    if ($status == "ACTIVE") {
+        return "badge-success";
+    } elseif ($status == "NEW") {
+        return "badge-warning";
+    } elseif ($status == "SUSPENDED") {
+        return "badge-danger";
+    }
+
+    return "";
+}

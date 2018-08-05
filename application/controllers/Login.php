@@ -26,7 +26,8 @@ class Login extends CI_Controller
                 $userData = array(
                     'email' => $existing_user->row()->user_email,
                     'name' => $existing_user->row()->user_first_name,
-                    'user_level' => $existing_user->row()->user_level
+                    'user_level' => $existing_user->row()->user_level,
+                    'user_id' => $existing_user->row()->user_id
                 );
                 $this->session->set_userdata($userData);
                 if ($existing_user->row()->user_level == 2) {
