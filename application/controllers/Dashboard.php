@@ -5,12 +5,29 @@ class Dashboard extends CI_Controller
 {
     public function index()
     {
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('session');
         $this->load->model('Dashboard_model');
 
         if ($this->isLoggedIn() && $this->isAdmin()) {
-            $subscribers = $this->Dashboard_model->getSubscribers();
+
+            $email = null;
+            $status = null;
+            $page = null;
+
+            if (isset($_GET['email'])) {
+                $email = $_GET['email'];
+            }
+
+            if (isset($_GET['status'])) {
+                $status = $_GET['status'];
+            }
+
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+            }
+
+            $subscribers = $this->Dashboard_model->getSubscribers($email, $status, $page);
             $this->load->view('dash_board_subscribers', $this->getPageData($subscribers));
         } else {
             redirect('/login');
@@ -19,7 +36,7 @@ class Dashboard extends CI_Controller
 
     public function subscriber_view()
     {
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('session');
 
         if ($this->isLoggedIn() && $this->isAdmin()) {

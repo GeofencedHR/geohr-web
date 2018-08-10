@@ -21,7 +21,7 @@ require_once("dash_board_subscribers_search.php");
             <?php
 
             $i = 1;
-            foreach ($pageData->result() as $row) {
+            foreach ($pageData['data']->result() as $row) {
                 echo "
                 <tr>
                 <td>" . $i++ . "</td>
@@ -48,6 +48,43 @@ require_once("dash_board_subscribers_search.php");
             </tbody>
         </table>
     </div>
+
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item <?php if ($pageData['currentPage'] <= 1) {
+                echo "disabled";
+            } ?>">
+                <a class="page-link"
+                   href="<?php echo base_url('/index.php/dashboard?page=' . ($pageData['currentPage'] - 1) . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>"
+                   tabindex="-1">Previous</a>
+            </li>
+
+            <?php
+            for ($x = 1; $x <= $pageData['pages']; $x++) {
+                ?>
+
+                <li class="page-item
+                <?php if ($pageData['currentPage'] == $x) {
+                    echo "active";
+                } ?>">
+                    <a class="page-link"
+                       href="<?php echo base_url('/index.php/dashboard?page=' . $x . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>">
+                        <?php echo $x; ?>
+                    </a>
+                </li>
+
+                <?php
+            }
+            ?>
+
+            <li class="page-item <?php if ($pageData['currentPage'] >= $pageData['pages']) {
+                echo "disabled";
+            } ?>">
+                <a class="page-link"
+                   href="<?php echo base_url('/index.php/dashboard?page=' . ($pageData['currentPage'] + 1) . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>">Next</a>
+            </li>
+        </ul>
+    </nav>
 
 <?php
 require_once("dash_board_footer.php");
