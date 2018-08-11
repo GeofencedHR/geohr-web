@@ -19,33 +19,46 @@ require_once("dash_board_subscribers_search.php");
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="First name" readonly>
+                        <input type="text" class="form-control" id="firstName" placeholder="First name" readonly
+                               value="<?php echo $pageData->user_first_name; ?>">
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last name" readonly>
+                        <input type="text" class="form-control" id="lastName" placeholder="Last name" readonly
+                               value="<?php echo $pageData->user_last_name; ?>">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="username">Email address</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="username" placeholder="Email address" readonly>
+                        <input type="email" class="form-control" id="username" placeholder="Email address" readonly
+                               value="<?php echo $pageData->user_email; ?>">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="address">Company name</label>
-                    <input type="text" class="form-control" id="address" placeholder="Company name" readonly>
+                    <input type="text" class="form-control" id="address" placeholder="Company name" readonly
+                           value="<?php echo $pageData->user_company; ?>">
                 </div>
 
                 <div class="mb-3">
                     <label for="address">Status</label>
                     <select id="inputState" class="form-control">
                         <option selected disabled="true">Select</option>
-                        <option disabled="true">New</option>
-                        <option>Active</option>
-                        <option>Suspended</option>
+                        <option disabled="true" <?php if ($pageData->status == "NEW") {
+                            echo "selected";
+                        } ?>>New
+                        </option>
+                        <option <?php if ($pageData->status == "ACTIVE") {
+                            echo "selected";
+                        } ?>>Active
+                        </option>
+                        <option <?php if ($pageData->status == "SUSPENDED") {
+                            echo "selected";
+                        } ?>>Suspended
+                        </option>
                     </select>
                 </div>
 
@@ -53,8 +66,14 @@ require_once("dash_board_subscribers_search.php");
                     <label for="address">Plan</label>
                     <select id="inputState" class="form-control">
                         <option selected disabled="true">Select</option>
-                        <option>Free</option>
-                        <option>Paid</option>
+                        <option <?php if ($pageData->plan == "NONE") {
+                            echo "selected";
+                        } ?>>None
+                        </option>
+                        <option <?php if ($pageData->plan == "FREE") {
+                            echo "selected";
+                        } ?>>Free
+                        </option>
                     </select>
                 </div>
 
@@ -139,14 +158,14 @@ require_once("dash_board_subscribers_search.php");
                         <h6 class="my-0">Registered</h6>
                         <small class="text-muted">Date of registered</small>
                     </div>
-                    <span class="text-muted">2018-10-05 10:30 PM</span>
+                    <span class="text-muted"><?php echo $pageData->user_created; ?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                         <h6 class="my-0">Updated</h6>
                         <small class="text-muted">Date of last updated</small>
                     </div>
-                    <span class="text-muted">2018-10-05 10:30 PM</span>
+                    <span class="text-muted"><?php echo $pageData->user_last_updated; ?></span>
                 </li>
             </ul>
 

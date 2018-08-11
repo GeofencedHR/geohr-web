@@ -38,9 +38,13 @@ class Dashboard extends CI_Controller
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('session');
+        $this->load->model('Dashboard_model');
 
         if ($this->isLoggedIn() && $this->isAdmin()) {
-            $this->load->view('dash_board_subscribers_view', $this->getPageData(null));
+            $profileData = $this->Dashboard_model->getSubscriberProfile($_GET['id']);
+            if ($profileData['profile']->num_rows() == 1) {
+                $this->load->view('dash_board_subscribers_view', $this->getPageData($profileData['profile']->row()));
+            }
         } else {
             redirect('/login');
         }

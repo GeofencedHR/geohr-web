@@ -53,4 +53,15 @@ class Dashboard_model extends CI_Model
         $data = $this->db->get();
         return array("pages" => $pages / $recordsPerPage, "data" => $data, "currentPage" => $page, "email" => $email, "status" => $status);
     }
+
+    public function getSubscriberProfile($subId)
+    {
+        $this->load->database();
+        $this->db->select('users.user_id, users.user_first_name, users.user_last_name, users.user_email, users.	user_company, users.user_created, users.user_last_updated, user_statuses.status, user_plans.plan');
+        $this->db->join('user_statuses', 'users.user_status=user_statuses.status_id', 'inner');
+        $this->db->join('user_plans', 'users.user_plan=user_plans.plan_id', 'inner');
+        $this->db->where("users.user_id", $subId);
+        $data = $this->db->get('users');
+        return array("profile" => $data);
+    }
 }
