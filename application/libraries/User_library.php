@@ -33,6 +33,13 @@ class User_library
         return $this->CI->db->get(self::USERS_TABLE_NAME);
     }
 
+    public function find_by_id($id)
+    {
+        $this->CI->load->database();
+        $this->CI->db->where("user_id", $id);
+        return $this->CI->db->get(self::USERS_TABLE_NAME);
+    }
+
     public function find_by_email_password($username, $password)
     {
         $this->CI->load->database();

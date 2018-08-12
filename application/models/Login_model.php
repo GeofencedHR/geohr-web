@@ -15,11 +15,8 @@ class Login_model extends CI_Model
 
         if ($created_user->num_rows() == 1) {
             $this->load->library('email_library');
-
-            $email = $created_user->row()->user_email;
-            $name = $created_user->row()->user_first_name;
-            $mail_content = $this->email_library->create_account_confirmation_mail(md5($created_user->row()->user_created));
-            $this->email_library->send($email, $name, $mail_content['subject'], $mail_content['body']);
+            $mail_content = $this->email_library->create_account_confirmation_mail($created_user->row()->user_id, md5($created_user->row()->user_created));
+            $this->email_library->send($created_user->row()->user_email, $created_user->row()->user_first_name, $mail_content['subject'], $mail_content['body']);
         }
     }
 
@@ -27,6 +24,12 @@ class Login_model extends CI_Model
     {
         $this->load->library('user_library');
         return $this->user_library->find_by_email($email);
+    }
+
+    public function find_user_by_id($id)
+    {
+        $this->load->library('user_library');
+        return $this->user_library->find_by_id($id);
     }
 
     public function validate_user_credentials($username, $password)

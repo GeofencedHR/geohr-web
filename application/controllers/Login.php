@@ -88,6 +88,27 @@ class Login extends CI_Controller
         }
     }
 
+    public function verify()
+    {
+        $this->load->helper('url');
+        $id = $_GET['id'];
+        $token = $_GET['token'];
+
+        $this->load->model('Login_model');
+        $user = $this->Login_model->find_user_by_id($id);
+        if ($user->num_rows() == 1) {
+            $foundToken = md5($user->row()->user_created);
+            $data = array();
+            if ($token == $foundToken) {
+                $data['status'] = "DONE";
+                $this->load->view('account_confirmation', $data);
+            } else {
+                $data['status'] = "ERROR";
+                $this->load->view('account_confirmation', $data);
+            }
+        }
+    }
+
     public function email_check($email)
     {
         $this->load->model('Login_model');

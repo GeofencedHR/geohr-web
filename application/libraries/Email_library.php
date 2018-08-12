@@ -45,17 +45,11 @@ class  Email_library
         return $config;
     }
 
-    public function create_account_confirmation_mail($url_param)
+    public function create_account_confirmation_mail($user_id, $url_param)
     {
         $this->CI->load->helper('url');
         $subject = "Account confirmation";
-        $body = "Your account has been created successfully. Click on following link to confirm you email.\r\n\r\n" . base_url('/index.php/dashboard/admin_reports' . $url_param);
+        $body = "Your account has been created successfully. Click on following link to confirm you email.\r\n\r\n" . base_url('/index.php/login/verify?id=' . $user_id . '&token=' . $url_param);
         return array('subject' => $subject, 'body' => $body);
-    }
-
-    public function create_account_confirmation_success_mail_body()
-    {
-        $this->CI->load->helper('url');
-        return "Your email has been confirmed successfully and your account is now active. Visit " . base_url() . " and use your credentials to login.";
     }
 }
