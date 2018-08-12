@@ -18,6 +18,7 @@ class Login_model extends CI_Model
             $mail_content = $this->email_library->create_account_confirmation_mail($created_user->row()->user_id, md5($created_user->row()->user_created));
             $this->email_library->send($created_user->row()->user_email, $created_user->row()->user_first_name, $mail_content['subject'], $mail_content['body']);
         }
+        return $created_user;
     }
 
     public function find_user_by_email($email)

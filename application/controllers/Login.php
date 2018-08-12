@@ -84,7 +84,15 @@ class Login extends CI_Controller
                 'user_password' => md5($_POST['password']),
                 'user_level' => 2
             );
-            $this->Login_model->create_subscriber($user);
+            $created_user = $this->Login_model->create_subscriber($user);
+            $data = array();
+            if ($created_user->num_rows() == 1) {
+                $data['status'] = "DONE";
+                $this->load->view('registration_status', $data);
+            } else {
+                $data['status'] = "ERROR";
+                $this->load->view('registration_status', $data);
+            }
         }
     }
 
