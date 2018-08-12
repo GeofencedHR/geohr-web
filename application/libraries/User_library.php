@@ -23,6 +23,7 @@ class User_library
     {
         $this->CI->load->database();
         $this->CI->db->insert(self::USERS_TABLE_NAME, $user);
+        return $this->find_by_email($user['user_email']);
     }
 
     public function find_by_email($email)
