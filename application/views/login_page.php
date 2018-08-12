@@ -23,6 +23,15 @@ require_once("header.php");
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 <?php echo form_error('password'); ?>
             </div>
+            <?php
+            if (isset($status) && $status == "ERROR") {
+                ?>
+                <div class="form-group">
+                    <div class="form-error-alert">Invalid username or password.</div>
+                </div>
+                <?php
+            }
+            ?>
             <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <div class="text-center action-links">

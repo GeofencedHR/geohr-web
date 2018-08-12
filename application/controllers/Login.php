@@ -38,7 +38,9 @@ class Login extends CI_Controller
                     redirect('/dashboard');
                 }
             } else {
-                $this->load->view('login_page');
+                $data = array();
+                $data['status'] = "ERROR";
+                $this->load->view('login_page', $data);
             }
         }
     }
