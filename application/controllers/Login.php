@@ -100,6 +100,7 @@ class Login extends CI_Controller
             $foundToken = md5($user->row()->user_created);
             $data = array();
             if ($token == $foundToken) {
+                $this->Login_model->activate_user($id);
                 $data['status'] = "DONE";
                 $this->load->view('account_confirmation', $data);
             } else {

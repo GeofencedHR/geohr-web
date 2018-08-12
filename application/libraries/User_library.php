@@ -26,6 +26,16 @@ class User_library
         return $this->find_by_email($user['user_email']);
     }
 
+    public function update($key_field, $key_val, $data = array())
+    {
+        $this->CI->load->database();
+        foreach ($data as $key => $value) {
+            $this->CI->db->set($key, $value);
+        }
+        $this->CI->db->where($key_field, $key_val);
+        $this->CI->db->update(self::USERS_TABLE_NAME);
+    }
+
     public function find_by_email($email)
     {
         $this->CI->load->database();

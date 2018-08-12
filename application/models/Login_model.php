@@ -37,4 +37,11 @@ class Login_model extends CI_Model
         $this->load->library('user_library');
         return $this->user_library->find_by_email_password($username, $password);
     }
+
+    public function activate_user($id)
+    {
+        $this->load->library('user_library');
+        $data = array("user_status" => 2);
+        $this->user_library->update('user_id', $id, $data);
+    }
 }
