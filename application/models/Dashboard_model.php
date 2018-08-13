@@ -19,4 +19,10 @@ class Dashboard_model extends CI_Model
         $this->load->library('user_library');
         return $this->user_library->find_subscriber($subId);
     }
+
+    public function update_subscriber($id, $data)
+    {
+        $this->load->library('user_library');
+        $this->user_library->update('user_id', $id, $data);
+    }
 }

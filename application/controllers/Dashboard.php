@@ -41,9 +41,25 @@ class Dashboard extends CI_Controller
         $this->load->model('Dashboard_model');
 
         if ($this->isLoggedIn() && $this->isAdmin()) {
+
+            if (isset($_POST['status'])) {
+                $update = array();
+                $update['user_status'] = $_POST['status'];
+                $this->Dashboard_model->update_subscriber($_GET['id'], $update);
+            }
+
+            if (isset($_POST['plan'])) {
+                $update = array();
+                $update['user_plan'] = $_POST['plan'];
+                $this->Dashboard_model->update_subscriber($_GET['id'], $update);
+            }
+            
             $profileData = $this->Dashboard_model->getSubscriberProfile($_GET['id']);
             if ($profileData['profile']->num_rows() == 1) {
-                $this->load->view('dash_board_subscribers_view', $this->getPageData($profileData['profile']->row()));
+                $data = array();
+                $data['profile'] = $profileData['profile']->row();
+                $data['id'] = $_GET['id'];
+                $this->load->view('dash_board_subscribers_view', $this->getPageData($data));
             }
         } else {
             redirect('/login');
