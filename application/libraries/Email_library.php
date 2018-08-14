@@ -10,8 +10,8 @@ class  Email_library
 {
     protected $CI;
 
-    private $from_email = "no-reply-geohr@dushan.lk";
-    private $from_password = "EKX4x(g#hL74";
+    private $from_email = "**";
+    private $from_password = "**";
 
     public function __construct()
     {
