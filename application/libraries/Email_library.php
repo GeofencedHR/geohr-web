@@ -52,4 +52,12 @@ class  Email_library
         $body = "Your account has been created successfully. Click on following link to confirm you email.\r\n\r\n" . base_url('/index.php/login/verify?id=' . $user_id . '&token=' . $url_param);
         return array('subject' => $subject, 'body' => $body);
     }
+
+    public function create_employee_account_confirmation_mail($password)
+    {
+        $this->CI->load->helper('url');
+        $subject = "Account confirmation";
+        $body = "Your account has been created successfully. Use your email and following 4 digit password to login using our mobile app.\r\n\r\n" . $password;
+        return array('subject' => $subject, 'body' => $body);
+    }
 }

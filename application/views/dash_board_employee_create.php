@@ -9,6 +9,29 @@ require_once("dash_board_employee_search.php");
     <div class="row">
         <div class="col-md-8 order-md-1">
 
+            <?php
+            if (isset($pageData) && $pageData['status'] == "DONE") {
+                ?>
+                <div class="alert alert-success text-center" role="alert">
+                    Employee created successfully.
+                    <a href="<?php echo base_url("/index.php/dashboard/employee/view") ?>">
+                        View.
+                    </a>
+                </div>
+                <?php
+            }
+            ?>
+
+            <?php
+            if (isset($pageData) && $pageData['status'] == "ERROR") {
+                ?>
+                <div class="alert alert-danger text-center" role="alert">
+                    Something went wrong while create the employee. Please contact support.
+                </div>
+                <?php
+            }
+            ?>
+
             <h5 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">
               <span data-feather="user"></span> Create employee
