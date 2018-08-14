@@ -49,7 +49,7 @@ class  Email_library
     {
         $this->CI->load->helper('url');
         $subject = "Account confirmation";
-        $body = "Your account has been created successfully. Click on following link to confirm you email.\r\n\r\n" . base_url('/index.php/login/verify?id=' . $user_id . '&token=' . $url_param);
+        $body = "Your account has been created successfully. Click on following link to confirm you email.\r\n\r\n" . base_url('/index.php/register/verify?id=' . $user_id . '&token=' . $url_param);
         return array('subject' => $subject, 'body' => $body);
     }
 

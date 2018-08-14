@@ -11,7 +11,7 @@ require_once("header.php");
                      alt="Generic placeholder image">
             </div>
 
-            <?php echo form_open('/login/register'); ?>
+            <?php echo form_open('/register'); ?>
 
             <h4 class="text-center padding-top5 padding-bottom5">Get started today!</h4>
             <div class="form-group">

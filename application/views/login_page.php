@@ -35,8 +35,8 @@ require_once("header.php");
             <button type="submit" class="btn btn-primary">Login</button>
             </form>
             <div class="text-center action-links">
-                <a href="<?php echo base_url('/index.php/login/forgot_password'); ?>">Forgot password?</a> or
-                <a href="<?php echo base_url('/index.php/login/register'); ?>">Don't have an account?</a>
+                <a href="<?php echo base_url('/index.php/reset'); ?>">Forgot password?</a> or
+                <a href="<?php echo base_url('/index.php/register'); ?>">Don't have an account?</a>
             </div>
         </div>
         <div class="col"></div>
