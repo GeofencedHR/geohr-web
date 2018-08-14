@@ -10,6 +10,9 @@ class  Email_library
 {
     protected $CI;
 
+    private $from_email = "no-reply-geohr@dushan.lk";
+    private $from_password = "EKX4x(g#hL74";
+
     public function __construct()
     {
         $this->CI = &get_instance();
@@ -22,11 +25,13 @@ class  Email_library
         $this->CI->email->initialize($this->get_mail_config());
         $this->CI->email->set_newline("\r\n");
 
-        $this->CI->email->from('no-reply@geohr.dushan.lk', 'GeoHR');
+        $this->CI->email->from($this->from_email, 'GeoHR');
         $this->CI->email->to($to);
         $this->CI->email->subject($subject);
         $this->CI->email->message("Dear " . $name . ",\r\n\r\n" . $body . "\r\n\r\nThank you,\r\nGeoHR Team");
-        $this->CI->email->send();
+        $this->CI->email->send(FALSE);
+        $message = $this->CI->email->print_debugger();
+        log_message('error', 'Sent email ' . $message);
     }
 
     private function get_mail_config()
@@ -35,8 +40,8 @@ class  Email_library
         $config['useragent'] = "GeoHR";
         $config['protocol'] = "smtp";
         $config['smtp_host'] = "secure180.servconfig.com";
-        $config['smtp_user'] = "no-reply@geohr.dushan.lk";
-        $config['smtp_pass'] = "=z(L%#2iPMum";
+        $config['smtp_user'] = $this->from_email;
+        $config['smtp_pass'] = $this->from_password;
         $config['smtp_port'] = 465;
         $config['smtp_timeout'] = 5;
         $config['smtp_crypto'] = "ssl";

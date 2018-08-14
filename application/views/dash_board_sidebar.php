@@ -35,7 +35,7 @@ function isSubscriber($user_level)
                 <li class="nav-item">
                     <a class="nav-link <?php high_light_tab(null, $this); ?>
                 <?php high_light_tab("subscriber", $this); ?>"
-                       href="<?php echo base_url(); ?>">
+                       href="<?php echo base_url("/index.php/subscribers"); ?>">
                         <span data-feather="users"></span>
                         Subscribers
                     </a>
@@ -44,7 +44,7 @@ function isSubscriber($user_level)
             <?php if (isAdmin($user_level)) { ?>
                 <li class="nav-item" id="admin_reports">
                     <a class="nav-link <?php high_light_tab("admin_reports", $this); ?>"
-                       href="<?php echo base_url('/index.php/dashboard/admin_reports'); ?>">
+                       href="<?php echo base_url('/index.php/admin_reports'); ?>">
                         <span data-feather="trending-up"></span>
                         Reports
                     </a>
@@ -55,7 +55,7 @@ function isSubscriber($user_level)
                     <a class="nav-link
                       <?php high_light_tab("employees", $this); ?> 
                       <?php high_light_tab("employee", $this); ?>"
-                       href="<?php echo base_url('/index.php/dashboard/employees'); ?>">
+                       href="<?php echo base_url('/index.php/employees'); ?>">
                         <span data-feather="users"></span>
                         Employees
                     </a>
@@ -64,7 +64,7 @@ function isSubscriber($user_level)
             <?php if (isSubscriber($user_level)) { ?>
                 <li class="nav-item">
                     <a class="nav-link <?php high_light_tab("work_places", $this); ?>"
-                       href="<?php echo base_url('/index.php/dashboard/work_places'); ?>">
+                       href="<?php echo base_url('/index.php/work_places'); ?>">
                         <span data-feather="map-pin"></span>
                         Work places
                     </a>

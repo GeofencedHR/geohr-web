@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span data-feather="search"></span> Search
         </button>
     </form>
-    <a href="<?php echo base_url('/index.php/dashboard/employee/create'); ?>">
+    <a href="<?php echo base_url('/index.php/employees/create'); ?>">
         <button class="btn btn-success mb-2">
             <span data-feather="plus-circle"></span>
             New employee

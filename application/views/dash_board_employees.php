@@ -28,7 +28,7 @@ require_once("dash_board_employee_search.php")
                     <span class="badge badge-success">Active</span>
                 </td>
                 <td>
-                    <a href="<?php echo base_url('/index.php/dashboard/employee/view'); ?>" class="badge badge-info">View</a>
+                    <a href="<?php echo base_url('/index.php/employees/view'); ?>" class="badge badge-info">View</a>
                 </td>
             </tr>
             <tr>
@@ -41,7 +41,7 @@ require_once("dash_board_employee_search.php")
                     <span class="badge badge-danger">Suspended</span>
                 </td>
                 <td>
-                    <a href="<?php echo base_url('/index.php/dashboard/employee/view'); ?>" class="badge badge-info">View</a>
+                    <a href="<?php echo base_url('/index.php/employees/view'); ?>" class="badge badge-info">View</a>
                 </td>
             </tr>
             </tbody>

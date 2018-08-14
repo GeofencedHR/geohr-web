@@ -36,7 +36,7 @@ require_once("dash_board_subscribers_search.php");
                     <a href=";
                 ?>
 
-                <?php echo base_url('/index.php/dashboard/subscriber/view?id=' . $row->user_id); ?>
+                <?php echo base_url('/index.php/subscribers/view?id=' . $row->user_id); ?>
 
                 <?php
                 echo "\" class=\"badge badge-info\">View</a>
@@ -55,7 +55,7 @@ require_once("dash_board_subscribers_search.php");
                 echo "disabled";
             } ?>">
                 <a class="page-link"
-                   href="<?php echo base_url('/index.php/dashboard?page=' . ($pageData['currentPage'] - 1) . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>"
+                   href="<?php echo base_url('/index.php/subscribers?page=' . ($pageData['currentPage'] - 1) . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>"
                    tabindex="-1">Previous</a>
             </li>
 
@@ -68,7 +68,7 @@ require_once("dash_board_subscribers_search.php");
                     echo "active";
                 } ?>">
                     <a class="page-link"
-                       href="<?php echo base_url('/index.php/dashboard?page=' . $x . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>">
+                       href="<?php echo base_url('/index.php/subscribers?page=' . $x . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>">
                         <?php echo $x; ?>
                     </a>
                 </li>
@@ -81,7 +81,7 @@ require_once("dash_board_subscribers_search.php");
                 echo "disabled";
             } ?>">
                 <a class="page-link"
-                   href="<?php echo base_url('/index.php/dashboard?page=' . ($pageData['currentPage'] + 1) . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>">Next</a>
+                   href="<?php echo base_url('/index.php/subscribers?page=' . ($pageData['currentPage'] + 1) . '&email=' . $pageData['email'] . '&status=' . $pageData['status']); ?>">Next</a>
             </li>
         </ul>
     </nav>

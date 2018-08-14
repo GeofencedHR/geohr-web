@@ -15,7 +15,7 @@ require_once("dash_board_subscribers_search.php");
             </span>
             </h5>
 
-            <?php echo form_open('/dashboard/subscriber/view?id=' . $pageData['id']); ?>
+            <?php echo form_open('/subscribers/view?id=' . $pageData['id']); ?>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="firstName">First name</label>

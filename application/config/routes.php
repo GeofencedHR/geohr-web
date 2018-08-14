@@ -56,10 +56,6 @@ $route['rest'] = 'rest';
 $route['rest/report_location'] = 'rest/report_location';
 
 $route['default_controller'] = 'dashboard';
-$route['dashboard/subscriber/view'] = 'dashboard/subscriber_view';
-$route['dashboard/employee/view'] = 'dashboard/employee_view';
-$route['dashboard/employee/create'] = 'dashboard/employee_create';
-$route['dashboard/employee/report'] = 'dashboard/employee_report_view';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

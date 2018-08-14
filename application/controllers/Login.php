@@ -31,11 +31,11 @@ class Login extends CI_Controller
                 );
                 $this->session->set_userdata($userData);
                 if ($existing_user->row()->user_level == 2) {
-                    redirect('/dashboard/employees');
+                    redirect('/employees');
                 }
 
                 if ($existing_user->row()->user_level == 1) {
-                    redirect('/dashboard');
+                    redirect('/subscribers');
                 }
             } else {
                 $data = array();

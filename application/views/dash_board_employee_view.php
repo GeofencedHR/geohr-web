@@ -150,7 +150,7 @@ require_once("dash_board_employee_search.php");
                 <td>10:30 AM</td>
                 <td>2 hours 15 minutes</td>
                 <td>
-                    <a href="<?php echo base_url('/index.php/dashboard/employee/report'); ?>" class="badge badge-info">View</a>
+                    <a href="<?php echo base_url('/index.php/employees/report'); ?>" class="badge badge-info">View</a>
                 </td>
             </tr>
             <tr>
@@ -161,7 +161,7 @@ require_once("dash_board_employee_search.php");
                 <td>12:30 PM</td>
                 <td>3 hours 15 minutes</td>
                 <td>
-                    <a href="<?php echo base_url('/index.php/dashboard/employee/report'); ?>" class="badge badge-info">View</a>
+                    <a href="<?php echo base_url('/index.php/employees/report'); ?>" class="badge badge-info">View</a>
                 </td>
             </tr>
             </tbody>

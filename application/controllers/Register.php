@@ -68,15 +68,10 @@ class Register extends CI_Controller
         }
     }
 
+    // This is required for form validation to check for duplicate emails.
     public function email_check($email)
     {
-        $this->load->model('Login_model');
-        $existing_user = $this->Login_model->find_user_by_email($email);
-        if ($existing_user->num_rows() == 0) {
-            return true;
-        } else {
-            $this->form_validation->set_message('email_check', 'Email address "' . $existing_user->row()->user_email . '" is already registered."');
-            return false;
-        }
+        $this->load->library('user_validation_library');
+        return $this->user_validation_library->email_check($email);
     }
 }

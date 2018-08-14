@@ -14,7 +14,7 @@ require_once("dash_board_employee_search.php");
                 ?>
                 <div class="alert alert-success text-center" role="alert">
                     Employee created successfully.
-                    <a href="<?php echo base_url("/index.php/dashboard/employee/view") ?>">
+                    <a href="<?php echo base_url("/index.php/employees/view") ?>">
                         View.
                     </a>
                 </div>
@@ -38,7 +38,7 @@ require_once("dash_board_employee_search.php");
             </span>
             </h5>
 
-            <?php echo form_open('/dashboard/employee/create'); ?>
+            <?php echo form_open('/employees/create'); ?>
             <div class="row">
                 <div class="col-md-6 mb-3 form-group">
                     <label for="firstName">First name</label>

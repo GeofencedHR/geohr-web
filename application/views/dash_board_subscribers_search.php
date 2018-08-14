@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mb-3">
     <h2>Subscribers</h2>
 
-    <?php echo form_open('/', 'class="form-inline" method="GET"'); ?>
+    <?php echo form_open('/subscribers', 'class="form-inline" method="GET"'); ?>
 
     <div class="form-group mx-sm-3 mb-2">
         <input type="email" class="form-control" id="emailaddress" placeholder="Email address" name="email">
