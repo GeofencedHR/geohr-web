@@ -53,7 +53,7 @@ class Dashboard extends CI_Controller
                 $update['user_plan'] = $_POST['plan'];
                 $this->Dashboard_model->update_subscriber($_GET['id'], $update);
             }
-            
+
             $profileData = $this->Dashboard_model->getSubscriberProfile($_GET['id']);
             if ($profileData['profile']->num_rows() == 1) {
                 $data = array();
@@ -104,11 +104,20 @@ class Dashboard extends CI_Controller
 
     public function employee_create()
     {
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('form_validation');
         $this->load->library('session');
 
+        $this->form_validation->set_rules('firstName', 'First name', 'required|max_length[25]');
+        $this->form_validation->set_rules('lastName', 'Last name', 'max_length[50]');
+        $this->form_validation->set_rules('epId', 'Employee ID', 'required|max_length[10]');
+        $this->form_validation->set_rules('email', 'Email address', 'required|valid_email|callback_email_check|max_length[100]');
+        $this->form_validation->set_error_delimiters('<div class="form-error-alert">', '</div>');
+
         if ($this->isLoggedIn() && $this->isSubscriber()) {
-            $this->load->view('dash_board_employee_create', $this->getPageData(null));
+            if ($this->form_validation->run() == FALSE) {
+                $this->load->view('dash_board_employee_create', $this->getPageData(null));
+            }
         } else {
             redirect('/login');
         }
@@ -156,6 +165,18 @@ class Dashboard extends CI_Controller
         $data['user_id'] = $this->session->userdata('user_id');
         $data['pageData'] = $pageData;
         return $data;
+    }
+
+    public function email_check($email)
+    {
+        $this->load->model('Login_model');
+        $existing_user = $this->Login_model->find_user_by_email($email);
+        if ($existing_user->num_rows() == 0) {
+            return true;
+        } else {
+            $this->form_validation->set_message('email_check', 'Email address "' . $existing_user->row()->user_email . '" is already registered."');
+            return false;
+        }
     }
 
     private function isAdmin()
