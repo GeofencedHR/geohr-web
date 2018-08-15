@@ -37,7 +37,7 @@ class Employees extends CI_Controller
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
         $this->load->library('user_validation_library');
-        $this->load->model('Dashboard_model');
+        $this->load->model('Employees_model');
 
         $this->form_validation->set_rules('firstName', 'First name', 'required|max_length[25]');
         $this->form_validation->set_rules('lastName', 'Last name', 'max_length[50]');
@@ -63,7 +63,7 @@ class Employees extends CI_Controller
                     'user_parent_id' => $this->user_validation_library->get_user_id()
                 );
 
-                $created_user = $this->Dashboard_model->create_employee($user, $password);
+                $created_user = $this->Employees_model->create_employee($user, $password);
                 $data = array();
                 if ($created_user->num_rows() == 1) {
                     $data['status'] = "DONE";

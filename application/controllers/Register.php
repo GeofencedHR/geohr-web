@@ -13,7 +13,7 @@ class Register extends CI_Controller
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('form_validation');
-        $this->load->model('Login_model');
+        $this->load->model('Subscribers_model');
 
         $this->form_validation->set_rules('fname', 'First name', 'required|max_length[25]');
         $this->form_validation->set_rules('lname', 'Last name', 'max_length[50]');
@@ -34,7 +34,7 @@ class Register extends CI_Controller
                 'user_password' => md5($_POST['password']),
                 'user_level' => 2
             );
-            $created_user = $this->Login_model->create_subscriber($user);
+            $created_user = $this->Subscribers_model->create_subscriber($user);
             $data = array();
             if ($created_user->num_rows() == 1) {
                 $data['status'] = "DONE";
@@ -52,13 +52,15 @@ class Register extends CI_Controller
         $id = $_GET['id'];
         $token = $_GET['token'];
 
-        $this->load->model('Login_model');
-        $user = $this->Login_model->find_user_by_id($id);
+        $this->load->model('Registration_model');
+        $this->load->library('User_library');
+
+        $user = $this->User_library->find_by_id($id);
         if ($user->num_rows() == 1) {
             $foundToken = md5($user->row()->user_created);
             $data = array();
             if ($token == $foundToken) {
-                $this->Login_model->activate_user($id);
+                $this->Registration_model->activate_user($id);
                 $data['status'] = "DONE";
                 $this->load->view('account_confirmation', $data);
             } else {

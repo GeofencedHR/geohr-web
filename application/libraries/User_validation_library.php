@@ -65,9 +65,10 @@ class User_validation_library
 
     public function email_check($email)
     {
-        $this->CI->load->model('Login_model');
         $this->CI->load->library('form_validation');
-        $existing_user = $this->CI->Login_model->find_user_by_email($email);
+        $this->CI->load->library('user_library');
+
+        $existing_user = $this->CI->user_library->find_by_email($email);
         if ($existing_user->num_rows() == 0) {
             return true;
         } else {

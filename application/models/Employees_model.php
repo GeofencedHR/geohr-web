@@ -2,30 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: Dushan
- * Date: 8/4/2018
- * Time: 12:53 PM
+ * Date: 8/16/2018
+ * Time: 12:24 AM
  */
 
-class Dashboard_model extends CI_Model
+class Employees_model extends CI_Model
 {
-    public function getSubscribers($email, $status, $page)
-    {
-        $this->load->library('user_library');
-        return $this->user_library->subscriber_search($email, $status, $page);
-    }
-
-    public function getSubscriberProfile($subId)
-    {
-        $this->load->library('user_library');
-        return $this->user_library->find_subscriber($subId);
-    }
-
-    public function update_subscriber($id, $data)
-    {
-        $this->load->library('user_library');
-        $this->user_library->update('user_id', $id, $data);
-    }
-
     public function create_employee($user, $plain_password)
     {
         $this->load->library('user_library');

@@ -12,7 +12,7 @@ class Subscribers extends CI_Controller
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('user_validation_library');
-        $this->load->model('Dashboard_model');
+        $this->load->model('Subscribers_model');
 
         if ($this->user_validation_library->is_logged_in() && $this->user_validation_library->is_admin()) {
 
@@ -32,7 +32,7 @@ class Subscribers extends CI_Controller
                 $page = $_GET['page'];
             }
 
-            $subscribers = $this->Dashboard_model->getSubscribers($email, $status, $page);
+            $subscribers = $this->Subscribers_model->getSubscribers($email, $status, $page);
             $this->load->view('dash_board_subscribers', $this->user_validation_library->get_page_data($subscribers));
         } else {
             redirect('/login');
@@ -43,23 +43,23 @@ class Subscribers extends CI_Controller
     {
         $this->load->helper(array('form', 'url'));
         $this->load->library('user_validation_library');
-        $this->load->model('Dashboard_model');
+        $this->load->model('Subscribers_model');
 
         if ($this->user_validation_library->is_logged_in() && $this->user_validation_library->is_admin()) {
 
             if (isset($_POST['status'])) {
                 $update = array();
                 $update['user_status'] = $_POST['status'];
-                $this->Dashboard_model->update_subscriber($_GET['id'], $update);
+                $this->Subscribers_model->update_subscriber($_GET['id'], $update);
             }
 
             if (isset($_POST['plan'])) {
                 $update = array();
                 $update['user_plan'] = $_POST['plan'];
-                $this->Dashboard_model->update_subscriber($_GET['id'], $update);
+                $this->Subscribers_model->update_subscriber($_GET['id'], $update);
             }
 
-            $profileData = $this->Dashboard_model->getSubscriberProfile($_GET['id']);
+            $profileData = $this->Subscribers_model->getSubscriberProfile($_GET['id']);
             if ($profileData['profile']->num_rows() == 1) {
                 $data = array();
                 $data['profile'] = $profileData['profile']->row();
