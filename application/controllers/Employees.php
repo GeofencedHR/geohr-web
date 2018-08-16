@@ -60,7 +60,7 @@ class Employees extends CI_Controller
 
         $this->form_validation->set_rules('firstName', 'First name', 'required|max_length[25]');
         $this->form_validation->set_rules('lastName', 'Last name', 'max_length[50]');
-        $this->form_validation->set_rules('epId', 'Employee ID', 'required|max_length[10]');
+        $this->form_validation->set_rules('epId', 'Employee ID', 'required|callback_emp_id_check|max_length[10]');
         $this->form_validation->set_rules('email', 'Email address', 'required|valid_email|callback_email_check|max_length[100]');
         $this->form_validation->set_error_delimiters('<div class="form-error-alert">', '</div>');
 
@@ -114,5 +114,12 @@ class Employees extends CI_Controller
     {
         $this->load->library('user_validation_library');
         return $this->user_validation_library->email_check($email);
+    }
+
+    // This is required for form validation to check for employee Id.
+    public function emp_id_check($empId)
+    {
+        $this->load->library('user_validation_library');
+        return $this->user_validation_library->emp_id_check($empId);
     }
 }

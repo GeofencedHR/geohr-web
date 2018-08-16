@@ -72,7 +72,21 @@ class User_validation_library
         if ($existing_user->num_rows() == 0) {
             return true;
         } else {
-            $this->CI->form_validation->set_message('email_check', 'Email address "' . $existing_user->row()->user_email . '" is already registered."');
+            $this->CI->form_validation->set_message('email_check', 'Email address "' . $existing_user->row()->user_email . '" is already registered.');
+            return false;
+        }
+    }
+
+    public function emp_id_check($empId)
+    {
+        $this->CI->load->library('form_validation');
+        $this->CI->load->library('user_library');
+
+        $existing_user = $this->CI->user_library->find_by_parent_id_and_emp_id($this->get_user_id(), $empId);
+        if ($existing_user->num_rows() == 0) {
+            return true;
+        } else {
+            $this->CI->form_validation->set_message('emp_id_check', 'Employee ID "' . $existing_user->row()->user_emp_id . '" is already registered.');
             return false;
         }
     }

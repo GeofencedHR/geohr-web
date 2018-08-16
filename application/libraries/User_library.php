@@ -61,6 +61,14 @@ class User_library
         return $this->CI->db->get(self::USERS_TABLE_NAME);
     }
 
+    public function find_by_parent_id_and_emp_id($parentId, $empId)
+    {
+        $this->CI->load->database();
+        $array = array('user_parent_id' => $parentId, 'user_emp_id' => $empId);
+        $this->CI->db->where($array);
+        return $this->CI->db->get(self::USERS_TABLE_NAME);
+    }
+
     public function find_by_email_password($username, $password)
     {
         $this->CI->load->database();
