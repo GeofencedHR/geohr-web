@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 function high_light_tab($currentPath, $context)
 {
-    if ($context->uri->segment(2) == $currentPath) {
+    if ($context->uri->segment(1) == $currentPath) {
         echo "active";
     }
 }
@@ -34,7 +34,7 @@ function isSubscriber($user_level)
             <?php if (isAdmin($user_level)) { ?>
                 <li class="nav-item">
                     <a class="nav-link <?php high_light_tab(null, $this); ?>
-                <?php high_light_tab("subscriber", $this); ?>"
+                <?php high_light_tab("subscribers", $this); ?>"
                        href="<?php echo base_url("/index.php/subscribers"); ?>">
                         <span data-feather="users"></span>
                         Subscribers
