@@ -14,6 +14,17 @@ class User_library
     const USER_STATUS_TABLE_NAME = "user_statuses";
     const USER_PLAN_TABLE_NAME = "user_plans";
 
+    /*
+     * Page = 1, OFFSET = 0
+     * Page = 2, OFFSET = 10
+     * Page = 3, OFFSET = 20
+     * Page = 4, OFFSET = 30
+     *
+     * param 2 = num of records
+     * param 3 = OFFSET
+     * */
+    const RECORDS_PER_PAGE = 10;
+
     public function __construct()
     {
         $this->CI = &get_instance();
@@ -87,21 +98,11 @@ class User_library
             $this->CI->db->where("user_statuses.status", $status);
         }
 
-        $recordsPerPage = 10;
-        $queryOffset = ($page - 1) * $recordsPerPage;
-        /*
-         * Page = 1, OFFSET = 0
-         * Page = 2, OFFSET = 10
-         * Page = 3, OFFSET = 20
-         * Page = 4, OFFSET = 30
-         *
-         * param 2 = num of records
-         * param 3 = OFFSET
-         * */
+        $queryOffset = ($page - 1) * self::RECORDS_PER_PAGE;
         $pages = $this->CI->db->count_all_results(self::USERS_TABLE_NAME, FALSE);
-        $this->CI->db->limit($recordsPerPage, $queryOffset);
+        $this->CI->db->limit(self::RECORDS_PER_PAGE, $queryOffset);
         $data = $this->CI->db->get();
-        return array("pages" => $pages / $recordsPerPage, "data" => $data, "currentPage" => $page, "email" => $email, "status" => $status);
+        return array("pages" => $pages / self::RECORDS_PER_PAGE, "data" => $data, "currentPage" => $page, "email" => $email, "status" => $status);
     }
 
     public function find_subscriber($subId)
@@ -113,5 +114,39 @@ class User_library
         $this->CI->db->where("users.user_id", $subId);
         $data = $this->CI->db->get(self::USERS_TABLE_NAME);
         return array("profile" => $data);
+    }
+
+    public function find_employees($empId, $status, $subId, $page = 1)
+    {
+        /*
+         * RELATED PLAIN SQL
+         * -----------------
+         * SELECT users.user_id, users.user_parent_id, users.user_emp_id, users.user_email, users.user_first_name, users.user_created,  user_statuses.status from users
+         * INNER JOIN user_statuses ON users.user_status=user_statuses.status_id
+         * WHERE users.user_emp_id="EP1001" AND
+         * user_statuses.status='ACTIVE' AND
+         * users.user_parent_id=25;
+         * */
+        if ($page < 1) {
+            $page = 1;
+        }
+        $this->CI->load->database();
+        $this->CI->db->select('users.user_id, users.user_parent_id, users.user_emp_id, users.user_email, users.user_first_name, users.user_created, user_statuses.status');
+        $this->CI->db->join(self::USER_STATUS_TABLE_NAME, 'users.user_status=user_statuses.status_id', 'inner');
+        $this->CI->db->where("users.user_parent_id", $subId);
+
+        if (trim($empId) != null && trim($empId) != '') {
+            $this->CI->db->where("users.user_emp_id", $empId);
+        }
+
+        if (trim($status) != null && trim($status) != '') {
+            $this->CI->db->where("user_statuses.status", $status);
+        }
+
+        $queryOffset = ($page - 1) * self::RECORDS_PER_PAGE;
+        $pages = $this->CI->db->count_all_results(self::USERS_TABLE_NAME, FALSE);
+        $this->CI->db->limit(self::RECORDS_PER_PAGE, $queryOffset);
+        $data = $this->CI->db->get();
+        return array("pages" => $pages / self::RECORDS_PER_PAGE, "data" => $data, "currentPage" => $page, "empId" => $empId, "status" => $status);
     }
 }

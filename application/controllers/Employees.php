@@ -10,11 +10,30 @@ class Employees extends CI_Controller
 {
     public function index()
     {
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('user_validation_library');
+        $this->load->model('Employees_model');
 
         if ($this->user_validation_library->is_logged_in() && $this->user_validation_library->is_subscriber()) {
-            $this->load->view('dash_board_employees', $this->user_validation_library->get_page_data(null));
+
+            $empId = null;
+            $status = null;
+            $page = null;
+
+            if (isset($_GET['empId'])) {
+                $empId = $_GET['empId'];
+            }
+
+            if (isset($_GET['status'])) {
+                $status = $_GET['status'];
+            }
+
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+            }
+
+            $employees = $this->Employees_model->get_employees($empId, $status, $this->user_validation_library->get_user_id(), $page);
+            $this->load->view('dash_board_employees', $this->user_validation_library->get_page_data($employees));
         } else {
             redirect('/login');
         }

@@ -18,35 +18,85 @@ require_once("dash_board_employee_search.php")
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>1</td>
-                <td>Jack</td>
-                <td>jack@gmail.com</td>
-                <td>EP-001</td>
-                <td>10:30 PM on 20/10/2018</td>
-                <td>
-                    <span class="badge badge-success">Active</span>
-                </td>
-                <td>
-                    <a href="<?php echo base_url('/index.php/employees/view'); ?>" class="badge badge-info">View</a>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Saman</td>
-                <td>saman@gmail.com</td>
-                <td>EP-002</td>
-                <td>8:30 PM on 21/11/2018</td>
-                <td>
-                    <span class="badge badge-danger">Suspended</span>
-                </td>
-                <td>
-                    <a href="<?php echo base_url('/index.php/employees/view'); ?>" class="badge badge-info">View</a>
-                </td>
-            </tr>
+
+            <?php
+
+            $i = 1;
+            foreach ($pageData['data']->result() as $row) {
+                echo "
+                <tr>
+                    <td>" . $i++ . "</td>
+                    <td>" . $row->user_first_name . "</td>
+                    <td>" . $row->user_email . "</td>
+                    <td>" . $row->user_emp_id . "</td>
+                    <td>" . $row->user_created . "</td>
+                    <td>
+                        <span class=\"badge " . getStatusLabel($row->status) . "\">" . $row->status . "</span>
+                    </td>
+                    <td>
+                        <a href="; ?>
+
+                <?php echo base_url('/index.php/employees/view?id=' . $row->user_id); ?>
+
+                <?php echo "\" class=\"badge badge-info\">View</a>
+                    </td>
+                </tr>";
+            }
+            ?>
+
             </tbody>
         </table>
     </div>
 
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item <?php if ($pageData['currentPage'] <= 1) {
+                echo "disabled";
+            } ?>">
+                <a class="page-link"
+                   href="<?php echo base_url('/index.php/employees?page=' . ($pageData['currentPage'] - 1) . '&empId=' . $pageData['empId'] . '&status=' . $pageData['status']); ?>"
+                   tabindex="-1">Previous</a>
+            </li>
+
+            <?php
+            for ($x = 1; $x <= $pageData['pages']; $x++) {
+                ?>
+
+                <li class="page-item
+                <?php if ($pageData['currentPage'] == $x) {
+                    echo "active";
+                } ?>">
+                    <a class="page-link"
+                       href="<?php echo base_url('/index.php/employees?page=' . $x . '&empId=' . $pageData['empId'] . '&status=' . $pageData['status']); ?>">
+                        <?php echo $x; ?>
+                    </a>
+                </li>
+
+                <?php
+            }
+            ?>
+
+            <li class="page-item <?php if ($pageData['currentPage'] >= $pageData['pages']) {
+                echo "disabled";
+            } ?>">
+                <a class="page-link"
+                   href="<?php echo base_url('/index.php/employees?page=' . ($pageData['currentPage'] + 1) . '&empId=' . $pageData['empId'] . '&status=' . $pageData['status']); ?>">Next</a>
+            </li>
+        </ul>
+    </nav>
+
 <?php
 require_once("dash_board_footer.php");
+
+function getStatusLabel($status)
+{
+    if ($status == "ACTIVE") {
+        return "badge-success";
+    } elseif ($status == "NEW") {
+        return "badge-warning";
+    } elseif ($status == "SUSPENDED") {
+        return "badge-danger";
+    }
+
+    return "";
+}
