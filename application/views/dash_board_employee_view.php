@@ -19,19 +19,22 @@ require_once("dash_board_employee_search.php");
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="First name">
+                        <input type="text" class="form-control" id="firstName" placeholder="First name"
+                               value="<?php echo $pageData['profile']->user_first_name; ?>">
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last name">
+                        <input type="text" class="form-control" id="lastName" placeholder="Last name"
+                               value="<?php echo $pageData['profile']->user_last_name; ?>">
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="username">Email address</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="username" placeholder="Email address">
+                        <input type="email" class="form-control" id="username" placeholder="Email address"
+                               value="<?php echo $pageData['profile']->user_email; ?>">
                     </div>
                 </div>
 
@@ -39,8 +42,14 @@ require_once("dash_board_employee_search.php");
                     <label for="address">Status</label>
                     <select id="inputState" class="form-control">
                         <option selected disabled="true">Select</option>
-                        <option>Active</option>
-                        <option>Suspended</option>
+                        <option <?php if ($pageData['profile']->status == 'ACTIVE') {
+                            echo "selected";
+                        } ?>>Active
+                        </option>
+                        <option <?php if ($pageData['profile']->status == 'SUSPENDED') {
+                            echo "selected";
+                        } ?>>Suspended
+                        </option>
                     </select>
                 </div>
 
@@ -88,14 +97,14 @@ require_once("dash_board_employee_search.php");
                         <h6 class="my-0">Created</h6>
                         <small class="text-muted">Employee created date</small>
                     </div>
-                    <span class="text-muted">2018-10-05 10:30 PM</span>
+                    <span class="text-muted"><?php echo $pageData['profile']->user_created; ?></span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between lh-condensed">
                     <div>
                         <h6 class="my-0">Updated</h6>
                         <small class="text-muted">Date of last updated</small>
                     </div>
-                    <span class="text-muted">2018-10-05 10:30 PM</span>
+                    <span class="text-muted"><?php echo $pageData['profile']->user_last_updated; ?></span>
                 </li>
             </ul>
         </div>

@@ -157,4 +157,14 @@ class User_library
         $data = $this->CI->db->get();
         return array("pages" => $pages / self::RECORDS_PER_PAGE, "data" => $data, "currentPage" => $page, "empId" => $empId, "status" => $status);
     }
+
+    public function find_employee($user_id)
+    {
+        $this->CI->load->database();
+        $this->CI->db->select('users.user_id, users.user_parent_id, users.user_emp_id, users.user_email, users.user_first_name, users.user_last_name, users.user_created, users.user_last_updated, user_statuses.status');
+        $this->CI->db->join(self::USER_STATUS_TABLE_NAME, 'users.user_status=user_statuses.status_id', 'inner');
+        $this->CI->db->where("users.user_id", $user_id);
+        $data = $this->CI->db->get(self::USERS_TABLE_NAME);
+        return array("profile" => $data);
+    }
 }

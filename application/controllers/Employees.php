@@ -41,11 +41,19 @@ class Employees extends CI_Controller
 
     public function view()
     {
-        $this->load->helper('url');
+        $this->load->helper(array('form', 'url'));
         $this->load->library('user_validation_library');
+        $this->load->model('Employees_model');
 
         if ($this->user_validation_library->is_logged_in() && $this->user_validation_library->is_subscriber()) {
-            $this->load->view('dash_board_employee_view', $this->user_validation_library->get_page_data(null));
+
+            $profileData = $this->Employees_model->get_employee_profile($_GET['id']);
+            if ($profileData['profile']->num_rows() == 1) {
+                $data = array();
+                $data['profile'] = $profileData['profile']->row();
+                $data['id'] = $_GET['id'];
+                $this->load->view('dash_board_employee_view', $this->user_validation_library->get_page_data($data));
+            }
         } else {
             redirect('/login');
         }

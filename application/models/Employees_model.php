@@ -25,4 +25,10 @@ class Employees_model extends CI_Model
         $this->load->library('user_library');
         return $this->user_library->find_employees($empId, $status, $subId, $page);
     }
+
+    public function get_employee_profile($user_id)
+    {
+        $this->load->library('user_library');
+        return $this->user_library->find_employee($user_id);
+    }
 }
