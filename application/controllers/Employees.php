@@ -47,6 +47,24 @@ class Employees extends CI_Controller
 
         if ($this->user_validation_library->is_logged_in() && $this->user_validation_library->is_subscriber()) {
 
+            if (isset($_POST['first_name'])) {
+                $update = array();
+                $update['user_first_name'] = $_POST['first_name'];
+                $this->Employees_model->update_employee($_GET['id'], $update);
+            }
+
+            if (isset($_POST['last_name'])) {
+                $update = array();
+                $update['user_last_name'] = $_POST['last_name'];
+                $this->Employees_model->update_employee($_GET['id'], $update);
+            }
+
+            if (isset($_POST['status'])) {
+                $update = array();
+                $update['user_status'] = $_POST['status'];
+                $this->Employees_model->update_employee($_GET['id'], $update);
+            }
+
             $profileData = $this->Employees_model->get_employee_profile($_GET['id']);
             if ($profileData['profile']->num_rows() == 1) {
                 $data = array();

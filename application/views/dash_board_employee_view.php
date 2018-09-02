@@ -15,50 +15,60 @@ require_once("dash_board_employee_search.php");
             </span>
             </h5>
 
-            <form class="needs-validation" novalidate>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="firstName">First name</label>
-                        <input type="text" class="form-control" id="firstName" placeholder="First name"
-                               value="<?php echo $pageData['profile']->user_first_name; ?>">
-                    </div>
-
-                    <div class="col-md-6 mb-3">
-                        <label for="lastName">Last name</label>
-                        <input type="text" class="form-control" id="lastName" placeholder="Last name"
-                               value="<?php echo $pageData['profile']->user_last_name; ?>">
-                    </div>
+            <?php echo form_open('/employees/view?id=' . $pageData['id']); ?>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="First name"
+                           value="<?php echo $pageData['profile']->user_first_name; ?>" name="first_name">
                 </div>
 
-                <div class="mb-3">
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Last name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last name"
+                           value="<?php echo $pageData['profile']->user_last_name; ?>" name="last_name">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
                     <label for="username">Email address</label>
                     <div class="input-group">
-                        <input type="email" class="form-control" id="username" placeholder="Email address"
+                        <input type="email" class="form-control" id="username" placeholder="Email address" readonly
                                value="<?php echo $pageData['profile']->user_email; ?>">
                     </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="address">Status</label>
-                    <select id="inputState" class="form-control">
-                        <option selected disabled="true">Select</option>
-                        <option <?php if ($pageData['profile']->status == 'ACTIVE') {
-                            echo "selected";
-                        } ?>>Active
-                        </option>
-                        <option <?php if ($pageData['profile']->status == 'SUSPENDED') {
-                            echo "selected";
-                        } ?>>Suspended
-                        </option>
-                    </select>
-                </div>
-
-                <!-- <hr class="mb-4"> -->
-                <div class="row">
-                    <div class="col-md-6">
-                        <button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
+                <div class="col-md-6 mb-3">
+                    <label for="username">Employee Id</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="employeeId" placeholder="Employee ID" readonly
+                               value="<?php echo $pageData['profile']->user_emp_id; ?>">
                     </div>
                 </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="address">Status</label>
+                <select id="inputState" class="form-control" name="status">
+                    <option selected disabled="true">Select</option>
+                    <option <?php if ($pageData['profile']->status == 'ACTIVE') {
+                        echo "selected";
+                    } ?> value="2">Active
+                    </option>
+                    <option <?php if ($pageData['profile']->status == 'SUSPENDED') {
+                        echo "selected";
+                    } ?> value="3">Suspended
+                    </option>
+                </select>
+            </div>
+
+            <!-- <hr class="mb-4"> -->
+            <div class="row">
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Update</button>
+                </div>
+            </div>
             </form>
         </div>
 

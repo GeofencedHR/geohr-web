@@ -31,4 +31,10 @@ class Employees_model extends CI_Model
         $this->load->library('user_library');
         return $this->user_library->find_employee($user_id);
     }
+
+    public function update_employee($id, $data)
+    {
+        $this->load->library('user_library');
+        $this->user_library->update('user_id', $id, $data);
+    }
 }
