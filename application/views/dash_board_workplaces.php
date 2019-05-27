@@ -1,23 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once("dash_board_header.php");
+require_once("dash_board_workplaces_search.php");
 ?>
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mb-3">
-        <h2>Work places</h2>
 
-        <form class="form-inline">
-            <div class="form-group mx-sm-3 mb-2">
-                <input type="text" class="form-control" id="workplace" placeholder="Name">
-            </div>
-            <button type="submit" class="btn btn-primary mb-2">Search</button>
-        </form>
-        <a href="#">
-            <button class="btn btn-success mb-2">
-                <span data-feather="plus-circle"></span>
-                New work place
-            </button>
-        </a>
-    </div>
 
     <div class="table-responsive">
         <table class="table table-striped">

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 require_once("dash_board_header.php");
-require_once("dash_board_employee_search.php");
+require_once("dash_board_workplaces_search.php");
 ?>
 
     <hr/>
@@ -34,7 +34,7 @@ require_once("dash_board_employee_search.php");
 
             <h5 class="d-flex justify-content-between align-items-center mb-3">
             <span class="text-muted">
-              <span data-feather="user"></span> Create employee
+              <span data-feather="user"></span> Create workplaces
             </span>
             </h5>
 

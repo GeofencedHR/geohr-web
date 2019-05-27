@@ -20,11 +20,11 @@ class Work_places extends CI_Controller
         }
     }
 
-//    public function create()
-//    {
-//        $this->load->helper(array('form', 'url'));
-//        $this->load->library('user_validation_library');
-//        // $this->load->model('Employees_model');
-//        $this->load->view('dash_board_workplace_create', $this->user_validation_library->get_page_data(null));
-//    }
+    public function create()
+    {
+        $this->load->helper(array('form', 'url'));
+        $this->load->library('user_validation_library');
+        // $this->load->model('Employees_model');
+        $this->load->view('dash_board_workplace_create', $this->user_validation_library->get_page_data(null));
+    }
 }
